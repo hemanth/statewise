@@ -1,0 +1,330 @@
+{
+  "name": "India states and union territories learning data",
+  "regionNote": "Six administrative/zonal region groupings for India: North, South, West, East, Central, Northeast.",
+  "states": [
+    {
+      "id": "AP",
+      "name": "Andhra Pradesh",
+      "abbr": "AP",
+      "capital": "Amaravati",
+      "region": "South",
+      "nickname": "Rice Bowl of India",
+      "year": 1956
+    },
+    {
+      "id": "AR",
+      "name": "Arunachal Pradesh",
+      "abbr": "AR",
+      "capital": "Itanagar",
+      "region": "Northeast",
+      "nickname": "Land of Dawn-Lit Mountains",
+      "year": 1987
+    },
+    {
+      "id": "AS",
+      "name": "Assam",
+      "abbr": "AS",
+      "capital": "Dispur",
+      "region": "Northeast",
+      "nickname": "Land of Red River and Blue Hills",
+      "year": 1950
+    },
+    {
+      "id": "BR",
+      "name": "Bihar",
+      "abbr": "BR",
+      "capital": "Patna",
+      "region": "East",
+      "nickname": "Land of Viharas & Enlightenment",
+      "year": 1950
+    },
+    {
+      "id": "CG",
+      "name": "Chhattisgarh",
+      "abbr": "CG",
+      "capital": "Raipur",
+      "region": "Central",
+      "nickname": "Rice Bowl of Central India",
+      "year": 2000
+    },
+    {
+      "id": "GA",
+      "name": "Goa",
+      "abbr": "GA",
+      "capital": "Panaji",
+      "region": "West",
+      "nickname": "Pearl of the Orient",
+      "year": 1987
+    },
+    {
+      "id": "GJ",
+      "name": "Gujarat",
+      "abbr": "GJ",
+      "capital": "Gandhinagar",
+      "region": "West",
+      "nickname": "Land of the Legends",
+      "year": 1960
+    },
+    {
+      "id": "HR",
+      "name": "Haryana",
+      "abbr": "HR",
+      "capital": "Chandigarh",
+      "region": "North",
+      "nickname": "Breadbasket of India",
+      "year": 1966
+    },
+    {
+      "id": "HP",
+      "name": "Himachal Pradesh",
+      "abbr": "HP",
+      "capital": "Shimla",
+      "region": "North",
+      "nickname": "Land of the Gods",
+      "year": 1971
+    },
+    {
+      "id": "JH",
+      "name": "Jharkhand",
+      "abbr": "JH",
+      "capital": "Ranchi",
+      "region": "East",
+      "nickname": "Land of Forests",
+      "year": 2000
+    },
+    {
+      "id": "KA",
+      "name": "Karnataka",
+      "abbr": "KA",
+      "capital": "Bengaluru",
+      "region": "South",
+      "nickname": "Cradle of Indian Tech",
+      "year": 1956
+    },
+    {
+      "id": "KL",
+      "name": "Kerala",
+      "abbr": "KL",
+      "capital": "Thiruvananthapuram",
+      "region": "South",
+      "nickname": "God’s Own Country",
+      "year": 1956
+    },
+    {
+      "id": "MP",
+      "name": "Madhya Pradesh",
+      "abbr": "MP",
+      "capital": "Bhopal",
+      "region": "Central",
+      "nickname": "Heart of India",
+      "year": 1956
+    },
+    {
+      "id": "MH",
+      "name": "Maharashtra",
+      "abbr": "MH",
+      "capital": "Mumbai",
+      "region": "West",
+      "nickname": "Gateway of India",
+      "year": 1960
+    },
+    {
+      "id": "MN",
+      "name": "Manipur",
+      "abbr": "MN",
+      "capital": "Imphal",
+      "region": "Northeast",
+      "nickname": "Jewel of India",
+      "year": 1972
+    },
+    {
+      "id": "ML",
+      "name": "Meghalaya",
+      "abbr": "ML",
+      "capital": "Shillong",
+      "region": "Northeast",
+      "nickname": "Abode of Clouds",
+      "year": 1972
+    },
+    {
+      "id": "MZ",
+      "name": "Mizoram",
+      "abbr": "MZ",
+      "capital": "Aizawl",
+      "region": "Northeast",
+      "nickname": "Land of the Hill People",
+      "year": 1987
+    },
+    {
+      "id": "NL",
+      "name": "Nagaland",
+      "abbr": "NL",
+      "capital": "Kohima",
+      "region": "Northeast",
+      "nickname": "Land of Festivals",
+      "year": 1963
+    },
+    {
+      "id": "OD",
+      "name": "Odisha",
+      "abbr": "OD",
+      "capital": "Bhubaneswar",
+      "region": "East",
+      "nickname": "Soul of India",
+      "year": 1950
+    },
+    {
+      "id": "PB",
+      "name": "Punjab",
+      "abbr": "PB",
+      "capital": "Chandigarh",
+      "region": "North",
+      "nickname": "Land of Five Rivers",
+      "year": 1966
+    },
+    {
+      "id": "RJ",
+      "name": "Rajasthan",
+      "abbr": "RJ",
+      "capital": "Jaipur",
+      "region": "West",
+      "nickname": "Land of Kings",
+      "year": 1950
+    },
+    {
+      "id": "SK",
+      "name": "Sikkim",
+      "abbr": "SK",
+      "capital": "Gangtok",
+      "region": "Northeast",
+      "nickname": "Valley of Rice",
+      "year": 1975
+    },
+    {
+      "id": "TN",
+      "name": "Tamil Nadu",
+      "abbr": "TN",
+      "capital": "Chennai",
+      "region": "South",
+      "nickname": "Land of Temples",
+      "year": 1950
+    },
+    {
+      "id": "TG",
+      "name": "Telangana",
+      "abbr": "TG",
+      "capital": "Hyderabad",
+      "region": "South",
+      "nickname": "Seed Bowl of India",
+      "year": 2014
+    },
+    {
+      "id": "TR",
+      "name": "Tripura",
+      "abbr": "TR",
+      "capital": "Agartala",
+      "region": "Northeast",
+      "nickname": "Land of Cane and Bamboo",
+      "year": 1972
+    },
+    {
+      "id": "UP",
+      "name": "Uttar Pradesh",
+      "abbr": "UP",
+      "capital": "Lucknow",
+      "region": "North",
+      "nickname": "Heartland of India",
+      "year": 1950
+    },
+    {
+      "id": "UK",
+      "name": "Uttarakhand",
+      "abbr": "UK",
+      "capital": "Dehradun",
+      "region": "North",
+      "nickname": "Land of the Sages",
+      "year": 2000
+    },
+    {
+      "id": "WB",
+      "name": "West Bengal",
+      "abbr": "WB",
+      "capital": "Kolkata",
+      "region": "East",
+      "nickname": "Cultural Capital of India",
+      "year": 1950
+    },
+    {
+      "id": "AN",
+      "name": "Andaman and Nicobar Islands",
+      "abbr": "AN",
+      "capital": "Port Blair",
+      "region": "South",
+      "nickname": "Emerald Islands",
+      "year": 1956
+    },
+    {
+      "id": "CH",
+      "name": "Chandigarh",
+      "abbr": "CH",
+      "capital": "Chandigarh",
+      "region": "North",
+      "nickname": "The Beautiful City",
+      "year": 1966
+    },
+    {
+      "id": "DH",
+      "name": "Dadra and Nagar Haveli and Daman and Diu",
+      "abbr": "DH",
+      "capital": "Daman",
+      "region": "West",
+      "nickname": "Portuguese Heritage Coast",
+      "year": 2020
+    },
+    {
+      "id": "DL",
+      "name": "Delhi",
+      "abbr": "DL",
+      "capital": "New Delhi",
+      "region": "North",
+      "nickname": "Heart of the Republic",
+      "year": 1956
+    },
+    {
+      "id": "JK",
+      "name": "Jammu and Kashmir",
+      "abbr": "JK",
+      "capital": "Srinagar",
+      "region": "North",
+      "nickname": "Paradise on Earth",
+      "year": 2019
+    },
+    {
+      "id": "LA",
+      "name": "Ladakh",
+      "abbr": "LA",
+      "capital": "Leh",
+      "region": "North",
+      "nickname": "Land of High Passes",
+      "year": 2019
+    },
+    {
+      "id": "LD",
+      "name": "Lakshadweep",
+      "abbr": "LD",
+      "capital": "Kavaratti",
+      "region": "South",
+      "nickname": "Coral Paradise",
+      "year": 1956
+    },
+    {
+      "id": "PY",
+      "name": "Puducherry",
+      "abbr": "PY",
+      "capital": "Puducherry",
+      "region": "South",
+      "nickname": "French Riviera of the East",
+      "year": 1962
+    }
+  ]
+}

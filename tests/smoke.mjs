@@ -131,9 +131,32 @@ try {
     await page.locator(".stats>div").nth(2).locator("strong").textContent(),
     "1",
   );
+
+  // Test India map toggle
+  await page.getByRole("button", { name: "Explore", exact: true }).click();
+  await page.getByRole("radio", { name: /India/ }).click();
+  await page.locator(".india-map").waitFor();
+  assert.equal(await page.locator(".india-map .state").count(), 37);
+
+  await page.locator('path[aria-label="Karnataka"]').click();
+  assert.equal(await page.locator(".photo-title h2").textContent(), "Karnataka");
+  assert.match(await page.locator(".facts").textContent(), /Bengaluru/);
+
+  await page.getByLabel("Filter by region").selectOption("South");
+  assert.equal(await page.locator(".state:not(.dim)").count(), 8);
+  await page.getByLabel("Filter by region").selectOption("All regions");
+
+  await page.getByLabel("Find a state").fill("Bengaluru");
+  await page.locator(".search-results button").click();
+  assert.equal(await page.locator(".photo-title h2").textContent(), "Karnataka");
+
+  // Switch back to USA
+  await page.getByRole("radio", { name: /USA/ }).click();
+  assert.equal(await page.locator(".us-map .state").count(), 50);
+
   assert.deepEqual(errors, []);
   console.log(
-    "PASS: 50 map states, 5 responsive widths, selection, search, filters, persisted bookmarks, location quiz, perfect nickname quiz, persisted results, no browser errors.",
+    "PASS: USA (50 states) and India (36 states & UTs), 5 responsive widths, selection, search, filters, persisted bookmarks, location quiz, perfect nickname quiz, persisted results, no browser errors.",
   );
 } finally {
   await browser.close();

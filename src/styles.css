@@ -110,8 +110,38 @@ nav button.active:after {
 }
 .header-right {
   display: flex;
-  gap: 24px;
+  gap: 20px;
   align-items: center;
+}
+.country-switch {
+  display: inline-flex;
+  background: #ebf0e6;
+  border: 1px solid var(--color-line);
+  border-radius: 20px;
+  padding: 2px;
+  gap: 2px;
+}
+.country-switch button {
+  padding: 4px 10px;
+  border-radius: 14px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #616c5f;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  transition: all 0.15s ease;
+}
+.country-switch button:hover {
+  color: var(--color-ink);
+}
+.country-switch button.active {
+  background: white;
+  color: var(--color-ink);
+  box-shadow: 0 1px 3px rgba(38, 61, 51, 0.12);
 }
 .little-note {
   font-size: 12px;
@@ -368,10 +398,69 @@ select {
 .small-states {
   cursor: pointer;
 }
-.small-states text {
+.small-states-title {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  fill: #858c81;
+  pointer-events: none;
+}
+.small-state-badge rect {
+  stroke: white;
+  stroke-width: 1.6;
+  cursor: pointer;
+  transition: fill 0.15s, stroke 0.15s, stroke-width 0.15s, filter 0.15s;
+}
+.small-state-badge:hover rect,
+.small-state-badge:focus rect {
+  fill: #8ca477;
+  stroke: #456344;
+  stroke-width: 2.2;
+}
+.small-state-badge.selected rect {
+  fill: #92aa76;
+  stroke: #253d2a;
+  stroke-width: 2.8;
+  filter: drop-shadow(0 2px 5px rgba(38, 61, 51, 0.3));
+}
+.small-state-badge text {
   font-size: 11px;
+  font-weight: 600;
   text-anchor: middle;
   fill: var(--color-ink);
+  pointer-events: none;
+}
+.small-state-badge.selected text {
+  fill: #253d2a;
+  font-weight: 850;
+}
+.small-state-badge.dim {
+  opacity: 0.25;
+}
+.small-state-beacon circle:first-child {
+  animation: beacon-pulse 2s infinite ease-in-out;
+}
+@keyframes beacon-pulse {
+  0% { r: 12; opacity: 0.8; }
+  50% { r: 20; opacity: 0.25; }
+  100% { r: 12; opacity: 0.8; }
+}
+.small-state-beacon-label {
+  fill: #253d2a;
+  font-size: 11px;
+  font-weight: 700;
+  paint-order: stroke;
+  stroke: white;
+  stroke-width: 3.5px;
+  stroke-linejoin: round;
+}
+.small-state-leader {
+  fill: none;
+  stroke: #335d45;
+  stroke-width: 1.8;
+  stroke-dasharray: 4 3;
+  opacity: 0.85;
+  pointer-events: none;
 }
 .map-hint {
   position: absolute;
@@ -405,6 +494,25 @@ select {
 .atlantic {
   right: 5%;
   top: 69%;
+}
+.arabian-sea {
+  left: 6%;
+  top: 60%;
+}
+.bay-bengal {
+  right: 6%;
+  top: 56%;
+}
+.indian-ocean {
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 8px;
+}
+.india-map {
+  max-height: 480px;
+}
+.small-states-india text {
+  font-size: 10px;
 }
 .map-controls {
   position: absolute;
@@ -514,7 +622,7 @@ select {
   padding: 18px;
   color: var(--color-ink);
 }
-.state-photo:not(.california) {
+.state-photo:not(.california):not(.karnataka) {
   background-image: repeating-linear-gradient(
     145deg,
     transparent 0,
@@ -523,7 +631,8 @@ select {
     #ffffff26 30px
   );
 }
-.california {
+.california,
+.karnataka {
   color: white;
 }
 .region-tag {
@@ -1209,6 +1318,16 @@ footer > span {
   .avatar {
     width: 32px;
     height: 32px;
+  }
+  .header-right {
+    gap: 8px;
+  }
+  .country-switch button {
+    padding: 3px 6px;
+    font-size: 12px;
+  }
+  .country-switch button span.country-name {
+    display: none;
   }
   nav {
     position: absolute;

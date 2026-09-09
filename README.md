@@ -1,6 +1,6 @@
 # statewise
 
-Interactive field guide to the 50 United States.
+Interactive field guide to the 50 United States and India's 36 states and union territories.
 
 ```bash
 npm install
@@ -23,13 +23,14 @@ Live version hosted at [h3manth.com/fun/statewise](https://h3manth.com/fun/state
 ## State data
 
 ```js
-import { states, regions } from './src/data.js';
+import { states as usStates } from './src/data.js';
+import { states as inStates } from './src/india-data.js';
 
-const texas = states.find((s) => s.abbr === 'TX');
-// { id: '48', name: 'Texas', abbr: 'TX', capital: 'Austin', region: 'Southwest', nickname: 'Lone Star State', year: 1845 }
+const texas = usStates.find((s) => s.abbr === 'TX');
+const karnataka = inStates.find((s) => s.abbr === 'KA');
 ```
 
-All 50 state records are bundled statically with capitals, nicknames, admission years, and regions. Map geometry uses Albers composite projection via `us-atlas`.
+All state records are bundled statically with capitals, nicknames, formation years, and regions. Map geometry uses composite Albers for the US and Mercator paths for India.
 
 ## Smoke tests
 
@@ -45,11 +46,13 @@ Verifies SVG map rendering, responsive viewports (320px–1440px), search, regio
 curl -s https://h3manth.com/fun/statewise/llms.txt
 curl -s https://h3manth.com/fun/statewise/app.json
 curl -s https://h3manth.com/fun/statewise/states.json
+curl -s https://h3manth.com/fun/statewise/india-states.json
 ```
 
 - `public/llms.txt` — LLM-friendly documentation and guide
 - `public/app.json` — machine-readable capabilities and data links
-- `public/states.json` — all 50 state records in plain JSON
+- `public/states.json` — all 50 US state records in plain JSON
+- `public/india-states.json` — all 36 Indian states and union territories in plain JSON
 - `public/sitemap.xml` — canonical app URL
 
 ## Video generation

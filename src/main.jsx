@@ -29,17 +29,29 @@ import {
 } from "lucide-react";
 import Map from "./Map";
 import {
-  states,
-  regions,
-  displayRegion,
-  colors,
+  states as usStates,
+  regions as usRegions,
+  displayRegion as usDisplayRegion,
+  colors as usColors,
   california,
   shuffle,
 } from "./data";
+import {
+  states as inStates,
+  regions as inRegions,
+  displayRegion as inDisplayRegion,
+  colors as inColors,
+  karnataka,
+} from "./india-data";
 import "./styles.css";
-function readProgress() {
+
+function readProgress(country = "us") {
   try {
-    const p = JSON.parse(localStorage.getItem("statewise-progress"));
+    const key = `statewise-progress-${country}`;
+    const legacy =
+      country === "us" ? localStorage.getItem("statewise-progress") : null;
+    const raw = localStorage.getItem(key) || legacy;
+    const p = JSON.parse(raw);
     return p && Array.isArray(p.learned) && Array.isArray(p.sessions)
       ? p
       : { learned: [], sessions: [] };
@@ -47,19 +59,53 @@ function readProgress() {
     return { learned: [], sessions: [] };
   }
 }
+
 function App() {
+  const [country, setCountry] = useState(() => {
+    try {
+      return localStorage.getItem("statewise-country") || "us";
+    } catch {
+      return "us";
+    }
+  });
+
+  const isIndia = country === "in";
+  const states = isIndia ? inStates : usStates;
+  const regions = isIndia ? inRegions : usRegions;
+  const colors = isIndia ? inColors : usColors;
+  const displayRegion = isIndia ? inDisplayRegion : usDisplayRegion;
+  const totalStates = states.length;
+  const stateNoun = isIndia ? "states & UTs" : "states";
+
   const [tab, setTab] = useState("Explore"),
-    [selected, setSelected] = useState("06"),
+    [selected, setSelected] = useState(() => (isIndia ? "KA" : "06")),
     [region, setRegion] = useState("All regions"),
     [search, setSearch] = useState(""),
     [labels, setLabels] = useState(true),
     [zoom, setZoom] = useState(1),
-    [progress, setProgress] = useState(readProgress),
+    [progress, setProgress] = useState(() => readProgress(country)),
     [quiz, setQuiz] = useState(null),
     [answer, setAnswer] = useState(null);
+
   const mapRef = useRef(null),
     fullscreenButtonRef = useRef(null);
   const [mapExpanded, setMapExpanded] = useState(false);
+
+  const handleCountryChange = (newCountry) => {
+    if (newCountry === country) return;
+    setCountry(newCountry);
+    try {
+      localStorage.setItem("statewise-country", newCountry);
+    } catch {}
+    setSelected(newCountry === "in" ? "KA" : "06");
+    setRegion("All regions");
+    setSearch("");
+    setZoom(1);
+    setQuiz(null);
+    setAnswer(null);
+    setProgress(readProgress(newCountry));
+  };
+
   useEffect(() => {
     const sync = () => {
       if (!document.fullscreenElement) {
@@ -70,6 +116,7 @@ function App() {
     document.addEventListener("fullscreenchange", sync);
     return () => document.removeEventListener("fullscreenchange", sync);
   }, []);
+
   useEffect(() => {
     if (!mapExpanded) return;
     const previousOverflow = document.body.style.overflow;
@@ -85,12 +132,14 @@ function App() {
       outside.forEach((el) => (el.inert = false));
     };
   }, [mapExpanded]);
+
   const closeMap = async () => {
     if (document.fullscreenElement === mapRef.current)
       await document.exitFullscreen();
     setMapExpanded(false);
     fullscreenButtonRef.current?.focus();
   };
+
   const toggleMap = async () => {
     if (mapExpanded) {
       await closeMap();
@@ -103,6 +152,7 @@ function App() {
       /* Use the full-viewport layout when native fullscreen is unavailable. */
     }
   };
+
   const mapKeys = (e) => {
     if (!mapExpanded) return;
     if (e.key === "Escape") {
@@ -124,25 +174,38 @@ function App() {
       }
     }
   };
-  const state = states.find((s) => s.id === selected);
-  const learned = progress.learned.includes(selected);
+
+  const state = states.find((s) => s.id === selected) || states[0];
+  const learned = progress.learned.includes(state.id);
+
+  const isFeatured =
+    (country === "us" && state.abbr === "CA") ||
+    (country === "in" && state.abbr === "KA");
+  const featuredData = country === "us" ? california : karnataka;
+
   const save = (p) => {
     setProgress(p);
     try {
-      localStorage.setItem("statewise-progress", JSON.stringify(p));
+      localStorage.setItem(`statewise-progress-${country}`, JSON.stringify(p));
+      if (country === "us") {
+        localStorage.setItem("statewise-progress", JSON.stringify(p));
+      }
     } catch {}
   };
+
   const select = (id) => {
     setSelected(id);
     setSearch("");
   };
+
   const toggleLearned = () =>
     save({
       ...progress,
       learned: learned
-        ? progress.learned.filter((id) => id !== selected)
-        : [...progress.learned, selected],
+        ? progress.learned.filter((id) => id !== state.id)
+        : [...progress.learned, state.id],
     });
+
   const startQuiz = (mode) => {
     const pool = states.filter(
       (s) => region === "All regions" || displayRegion(s) === region,
@@ -159,12 +222,14 @@ function App() {
     setQuiz({ mode, questions, index: 0, score: 0, done: false });
     setAnswer(null);
   };
+
   const respond = (id) => {
     if (answer || quiz.done) return;
     const correct = id === quiz.questions[quiz.index].state.id;
     setAnswer({ id, correct });
     if (correct) setQuiz((q) => ({ ...q, score: q.score + 1 }));
   };
+
   const next = () => {
     if (quiz.index === quiz.questions.length - 1) {
       save({
@@ -182,8 +247,10 @@ function App() {
     } else setQuiz({ ...quiz, index: quiz.index + 1 });
     setAnswer(null);
   };
+
   const total = progress.sessions.reduce((n, s) => n + s.total, 0),
     correct = progress.sessions.reduce((n, s) => n + s.score, 0);
+
   return (
     <>
       <header>
@@ -210,6 +277,28 @@ function App() {
           ))}
         </nav>
         <div className="header-right">
+          <div
+            className="country-switch"
+            role="radiogroup"
+            aria-label="Country selection"
+          >
+            <button
+              className={country === "us" ? "active" : ""}
+              role="radio"
+              aria-checked={country === "us"}
+              onClick={() => handleCountryChange("us")}
+            >
+              🇺🇸 <span className="country-name">USA</span>
+            </button>
+            <button
+              className={country === "in" ? "active" : ""}
+              role="radio"
+              aria-checked={country === "in"}
+              onClick={() => handleCountryChange("in")}
+            >
+              🇮🇳 <span className="country-name">India</span>
+            </button>
+          </div>
           <span className="little-note">A little smarter, state by state.</span>
           <button
             className="avatar"
@@ -243,10 +332,10 @@ function App() {
             </h1>
             <p>
               {tab === "Explore"
-                ? "Fifty states, endless things to discover. Let’s put your curiosity on the map."
+                ? `${totalStates} ${stateNoun}, endless things to discover. Let’s put your curiosity on the map.`
                 : tab === "Practice"
                   ? "Make it stick. Turn what you’ve discovered into what you know."
-                  : "Every state is a small win. Keep your curiosity going."}
+                  : `Every ${isIndia ? "state and territory" : "state"} is a small win. Keep your curiosity going.`}
             </p>
           </div>
           <div className="journey-badge">
@@ -258,7 +347,9 @@ function App() {
                 Your journey has{" "}
                 {progress.learned.length ? "begun" : "just begun"}
               </strong>
-              <small>{progress.learned.length} of 50 states explored</small>
+              <small>
+                {progress.learned.length} of {totalStates} {stateNoun} explored
+              </small>
             </div>
           </div>
         </div>
@@ -270,14 +361,16 @@ function App() {
                 className={`map-panel ${mapExpanded ? "map-expanded" : ""}`}
                 role={mapExpanded ? "dialog" : undefined}
                 aria-modal={mapExpanded ? true : undefined}
-                aria-label="Explore the United States map"
+                aria-label={`Explore the ${isIndia ? "India" : "United States"} map`}
                 onKeyDown={mapKeys}
               >
                 <div className="map-toolbar">
                   <div>
                     <h2>
-                      Meet the United States{" "}
-                      <span>50 states. One big adventure.</span>
+                      Meet {isIndia ? "India" : "the United States"}{" "}
+                      <span>
+                        {totalStates} {stateNoun}. One big adventure.
+                      </span>
                     </h2>
                   </div>
                   <div className="map-filters">
@@ -331,22 +424,43 @@ function App() {
                     <span className="pulse" /> Pick a state. Get to know it.
                   </div>
                   <Map
+                    country={country}
                     selected={selected}
                     onSelect={select}
                     region={region}
                     labels={labels}
                     zoom={zoom}
                   />
-                  <div className="ocean pacific">
-                    PACIFIC
-                    <br />
-                    OCEAN
-                  </div>
-                  <div className="ocean atlantic">
-                    ATLANTIC
-                    <br />
-                    OCEAN
-                  </div>
+                  {country === "us" ? (
+                    <>
+                      <div className="ocean pacific">
+                        PACIFIC
+                        <br />
+                        OCEAN
+                      </div>
+                      <div className="ocean atlantic">
+                        ATLANTIC
+                        <br />
+                        OCEAN
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="ocean arabian-sea">
+                        ARABIAN
+                        <br />
+                        SEA
+                      </div>
+                      <div className="ocean bay-bengal">
+                        BAY OF
+                        <br />
+                        BENGAL
+                      </div>
+                      <div className="ocean indian-ocean">
+                        INDIAN OCEAN
+                      </div>
+                    </>
+                  )}
                   <div className="map-controls">
                     <button
                       aria-label="Zoom in"
@@ -421,11 +535,11 @@ function App() {
               </section>
               <aside className="state-card" aria-live="polite">
                 <div
-                  className={`state-photo ${state.abbr === "CA" ? "california" : ""}`}
+                  className={`state-photo ${isFeatured ? (isIndia ? "karnataka" : "california") : ""}`}
                   style={
-                    state.abbr === "CA"
+                    isFeatured
                       ? {
-                          backgroundImage: `linear-gradient(0deg,rgba(12,35,24,.6),transparent 80%),url(${california.image})`,
+                          backgroundImage: `linear-gradient(0deg,rgba(12,35,24,.6),transparent 80%),url(${featuredData.image})`,
                         }
                       : { backgroundColor: colors[displayRegion(state)] }
                   }
@@ -453,7 +567,8 @@ function App() {
                     <div>
                       <Flag size={17} />
                       <span>
-                        Statehood<strong>{state.year}</strong>
+                        {isIndia ? "Formation" : "Statehood"}
+                        <strong>{state.year}</strong>
                       </span>
                     </div>
                   </div>
@@ -462,9 +577,11 @@ function App() {
                       <Lightbulb size={16} /> A little state of wonder
                     </h3>
                     <p>
-                      {state.abbr === "CA"
-                        ? california.fact
-                        : `Known as the ${state.nickname.replace(/^The /, "")}, ${state.name} became a state in ${state.year}. Its capital is ${state.capital} — keep that one in your back pocket for your next quiz.`}
+                      {isFeatured
+                        ? featuredData.fact
+                        : isIndia
+                          ? `Known as ${state.nickname}, ${state.name} formed in ${state.year}. Its capital is ${state.capital} — keep that one in your back pocket for your next quiz.`
+                          : `Known as the ${state.nickname.replace(/^The /, "")}, ${state.name} became a state in ${state.year}. Its capital is ${state.capital} — keep that one in your back pocket for your next quiz.`}
                     </p>
                   </div>
                   <button
@@ -525,16 +642,25 @@ function App() {
                   </div>
                   <div className="mini-book">
                     <BookOpen size={55} strokeWidth={1.1} />
-                    <span>50</span>
+                    <span>{totalStates}</span>
                   </div>
                   <div className="journey-meter">
                     <span>
-                      <strong>{progress.learned.length}</strong> / 50 states
-                      learned
+                      <strong>{progress.learned.length}</strong> / {totalStates}{" "}
+                      {stateNoun} learned
                     </span>
-                    <span>{progress.learned.length * 2}%</span>
+                    <span>
+                      {Math.round(
+                        (progress.learned.length / totalStates) * 100,
+                      )}
+                      %
+                    </span>
                     <div>
-                      <i style={{ width: `${progress.learned.length * 2}%` }} />
+                      <i
+                        style={{
+                          width: `${(progress.learned.length / totalStates) * 100}%`,
+                        }}
+                      />
                     </div>
                   </div>
                 </div>
@@ -548,7 +674,7 @@ function App() {
                 type="locations"
                 icon={MapIcon}
                 title="Find the state"
-                desc="Locate 10 states on an unlabeled map."
+                desc={`Locate 10 ${stateNoun} on an unlabeled map.`}
                 meta="MAP CHALLENGE"
                 color="green"
                 start={startQuiz}
@@ -585,9 +711,9 @@ function App() {
                 <Bookmark />
                 <strong>
                   {progress.learned.length}
-                  <small>/ 50</small>
+                  <small>/ {totalStates}</small>
                 </strong>
-                <span>States learned</span>
+                <span>{isIndia ? "States & UTs learned" : "States learned"}</span>
               </div>
               <div>
                 <Target />
@@ -632,7 +758,7 @@ function App() {
             discoveries.
           </span>
           <span>
-            All 50 states. All yours to explore.{" "}
+            All {totalStates} {stateNoun}. All yours to explore.{" "}
             <span className="footer-star">✳</span>
           </span>
         </footer>
@@ -760,7 +886,7 @@ function App() {
                             <span>
                               {answer.correct
                                 ? `That’s ${quiz.questions[quiz.index].state.name}.`
-                                : `You picked ${states.find((s) => s.id === answer.id).name}. ${quiz.questions[quiz.index].state.name} is marked ✓ on the map.`}
+                                : `You picked ${states.find((s) => s.id === answer.id)?.name || "another state"}. ${quiz.questions[quiz.index].state.name} is marked ✓ on the map.`}
                             </span>
                           </div>
                         </>
@@ -769,6 +895,7 @@ function App() {
                       )}
                     </div>
                     <Map
+                      country={country}
                       region="All regions"
                       labels={false}
                       quiz
@@ -786,7 +913,7 @@ function App() {
                       onSelect={respond}
                     />
                     <label className="map-answer-select">
-                      Or choose a state
+                      Or choose a {isIndia ? "state or UT" : "state"}
                       <select
                         aria-label="Choose state answer"
                         disabled={!!answer}
@@ -794,7 +921,7 @@ function App() {
                         onChange={(e) => respond(e.target.value)}
                       >
                         <option value="" disabled>
-                          Select a state…
+                          Select a {isIndia ? "state or UT" : "state"}…
                         </option>
                         {states.map((s) => (
                           <option value={s.id} key={s.id}>
@@ -859,6 +986,7 @@ function App() {
     </>
   );
 }
+
 function PracticeCard({ type, icon: Icon, title, desc, meta, color, start }) {
   return (
     <button className={`practice-card ${color}`} onClick={() => start(type)}>
@@ -876,4 +1004,5 @@ function PracticeCard({ type, icon: Icon, title, desc, meta, color, start }) {
     </button>
   );
 }
+
 createRoot(document.getElementById("root")).render(<App />);
