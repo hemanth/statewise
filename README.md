@@ -6,6 +6,10 @@ An interactive field guide to the 50 United States, built with React and Vite.
 
 ![Statewise social preview](public/og-image.png)
 
+
+https://github.com/user-attachments/assets/ea135d1d-25fb-4970-87e5-50ad838fb826
+
+
 ## Run locally
 
 ```sh
