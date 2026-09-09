@@ -2,7 +2,7 @@
 
 An interactive field guide to the 50 United States, built with React and Vite.
 
-[Open Statewise](https://h3manth.com/fun/statewise/) · [Watch the demo](https://h3manth.com/fun/statewise/statewise-demo.mp4)
+[Open Statewise](https://h3manth.com/fun/statewise/)
 
 ![Statewise social preview](public/og-image.png)
 
@@ -41,9 +41,9 @@ The static HTML includes canonical, Open Graph, Twitter Card, and WebApplication
 
 These make the app easier to discover and read; they do not guarantee search indexing or agent support. No MCP server or backend API is advertised.
 
-## Media
+## Visual assets
 
-`node scripts/generate-assets.mjs` regenerates the social image and app icons. `node scripts/record-demo.mjs` records real browser interactions; its timeline is saved under `media/`. Run `sh scripts/render-demo.sh` (requires FFmpeg) to add smooth zooms and export `public/statewise-demo.mp4`. Both scripts use `CHROME_PATH` when set.
+Run the asset-generation script in `scripts/generate-assets.mjs` to regenerate the social image and app icons. Set `CHROME_PATH` to use a different Chrome executable.
 
 ## Deployment
 
