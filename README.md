@@ -1,73 +1,66 @@
-# Statewise
+# statewise
 
-An interactive field guide to the 50 United States, built with React and Vite.
+Interactive field guide to the 50 United States.
 
-[Open Statewise](https://h3manth.com/fun/statewise/)
-
-![Statewise social preview](public/og-image.png)
-
-
-https://github.com/user-attachments/assets/ea135d1d-25fb-4970-87e5-50ad838fb826
-
-
-## Run locally
-
-```sh
+```bash
 npm install
+```
+
+## Quick start
+
+```bash
 npm run dev
 ```
 
-Open http://127.0.0.1:5173/fun/statewise/. Use `npm run build` for a production build and `npm run preview` to preview it.
+`npm run dev` starts the local dev server at `http://127.0.0.1:5173/fun/statewise/`. `npm run build` compiles for production. `npm test` runs browser smoke tests.
 
-## Features
+## Demo
 
-- Interactive SVG map with Alaska and Hawaii insets, small-state shortcuts, labels, zoom, and region filters
-- Search by state name, abbreviation, or capital
-- State capitals, nicknames, admission years, and learned-state bookmarks
-- Location, capital, and nickname quizzes with immediate feedback
-- Progress saved in this browser using localStorage
-- Responsive layouts, keyboard controls, and reduced-motion support
+https://github.com/user-attachments/assets/ea135d1d-25fb-4970-87e5-50ad838fb826
 
-The five regions are learning groups, not the four official Census regions. Geographic geometry is bundled from us-atlas (Albers projection). The California photo uses Unsplash; typography uses Google Fonts. Those visual resources need an internet connection. Core state data and map geometry are bundled with the app.
+Live version hosted at [h3manth.com/fun/statewise](https://h3manth.com/fun/statewise/).
 
-## Browser smoke checks
+## State data
 
-With the development server running, run `npm test`. The test uses local Google Chrome on macOS; set `CHROME_PATH` to a different Chrome executable when needed. It verifies responsive widths, the map, search, region filters, quizzes, and persisted progress.
+```js
+import { states, regions } from './src/data.js';
 
-## Metadata and agent discovery
+const texas = states.find((s) => s.abbr === 'TX');
+// { id: '48', name: 'Texas', abbr: 'TX', capital: 'Austin', region: 'Southwest', nickname: 'Lone Star State', year: 1845 }
+```
 
-The static HTML includes canonical, Open Graph, Twitter Card, and WebApplication JSON-LD metadata. The social preview is a 1200×630 PNG. SVG/PNG favicons, an Apple touch icon, and a web manifest are included.
+All 50 state records are bundled statically with capitals, nicknames, admission years, and regions. Map geometry uses Albers composite projection via `us-atlas`.
 
-- `public/llms.txt`: human-readable and agent-readable app guide, linked with `rel="describedby"`
-- `public/app.json`: machine-readable capabilities and data links
-- `public/states.json`: all 50 state records, without requiring JavaScript
-- `public/sitemap.xml`: canonical app URL
+## Smoke tests
 
-These make the app easier to discover and read; they do not guarantee search indexing or agent support. No MCP server or backend API is advertised.
+```bash
+npm test
+```
 
-## Visual assets
+Verifies SVG map rendering, responsive viewports (320px–1440px), search, region filters, quizzes, and localStorage persistence against headless Chrome.
 
-Run the asset-generation script in `scripts/generate-assets.mjs` to regenerate the social image and app icons. Set `CHROME_PATH` to use a different Chrome executable.
+## Agent discovery
 
-## Deployment
+```bash
+curl -s https://h3manth.com/fun/statewise/llms.txt
+curl -s https://h3manth.com/fun/statewise/app.json
+curl -s https://h3manth.com/fun/statewise/states.json
+```
 
-Vite builds for `/fun/statewise/`. Run `npm run build`, then copy the contents of `dist/` (including `.htaccess`) to `~/public_html/fun/statewise/` on the hosting server. Statewise is served directly by Apache; it needs no PM2 process or proxy configuration. Preview with `npm run preview` and open `/fun/statewise/` under the preview URL. The app does not require a Node server in production.
+- `public/llms.txt` — LLM-friendly documentation and guide
+- `public/app.json` — machine-readable capabilities and data links
+- `public/states.json` — all 50 state records in plain JSON
+- `public/sitemap.xml` — canonical app URL
 
-## Geographic data attribution
+## Video generation
 
-Map geometry is distributed with us-atlas, copyright 2013–2019 Michael Bostock. Its permission notice is included in `public/US-ATLAS-LICENSE.txt` and the deployed files.
-
-## Narrated demo
-
-[Watch the 41-second Statewise demo](https://h3manth.com/fun/statewise/statewise-narrated.mp4).
-
-The HyperFrames source is in `videos/statewise/`, with captured app screens, captions, and Hemanth narration generated locally using Pocket TTS. Personal voice-conditioning files are not included.
-
-To render the checked-in composition:
-
-```sh
+```bash
 cd videos/statewise
 npm run render -- --quality high --fps 30 --workers 2 --output renders/statewise-narrated.mp4
 ```
 
-The published copy is `public/statewise-narrated.mp4`.
+Renders the narrated demo video using HyperFrames and local Pocket TTS audio.
+
+## License
+
+MIT © [Hemanth.HM](https://h3manth.com)
