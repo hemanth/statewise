@@ -1,0 +1,456 @@
+{
+  "name": "United States learning data",
+  "regionNote": "Five educational region groupings, not official Census regions.",
+  "states": [
+    {
+      "id": "01",
+      "name": "Alabama",
+      "abbr": "AL",
+      "capital": "Montgomery",
+      "region": "Southeast",
+      "nickname": "Yellowhammer State",
+      "year": 1819
+    },
+    {
+      "id": "02",
+      "name": "Alaska",
+      "abbr": "AK",
+      "capital": "Juneau",
+      "region": "West",
+      "nickname": "The Last Frontier",
+      "year": 1959
+    },
+    {
+      "id": "04",
+      "name": "Arizona",
+      "abbr": "AZ",
+      "capital": "Phoenix",
+      "region": "Southwest",
+      "nickname": "Grand Canyon State",
+      "year": 1912
+    },
+    {
+      "id": "05",
+      "name": "Arkansas",
+      "abbr": "AR",
+      "capital": "Little Rock",
+      "region": "Southeast",
+      "nickname": "The Natural State",
+      "year": 1836
+    },
+    {
+      "id": "06",
+      "name": "California",
+      "abbr": "CA",
+      "capital": "Sacramento",
+      "region": "West",
+      "nickname": "The Golden State",
+      "year": 1850
+    },
+    {
+      "id": "08",
+      "name": "Colorado",
+      "abbr": "CO",
+      "capital": "Denver",
+      "region": "West",
+      "nickname": "Centennial State",
+      "year": 1876
+    },
+    {
+      "id": "09",
+      "name": "Connecticut",
+      "abbr": "CT",
+      "capital": "Hartford",
+      "region": "Northeast",
+      "nickname": "Constitution State",
+      "year": 1788
+    },
+    {
+      "id": "10",
+      "name": "Delaware",
+      "abbr": "DE",
+      "capital": "Dover",
+      "region": "Northeast",
+      "nickname": "The First State",
+      "year": 1787
+    },
+    {
+      "id": "12",
+      "name": "Florida",
+      "abbr": "FL",
+      "capital": "Tallahassee",
+      "region": "Southeast",
+      "nickname": "Sunshine State",
+      "year": 1845
+    },
+    {
+      "id": "13",
+      "name": "Georgia",
+      "abbr": "GA",
+      "capital": "Atlanta",
+      "region": "Southeast",
+      "nickname": "Peach State",
+      "year": 1788
+    },
+    {
+      "id": "15",
+      "name": "Hawaii",
+      "abbr": "HI",
+      "capital": "Honolulu",
+      "region": "West",
+      "nickname": "Aloha State",
+      "year": 1959
+    },
+    {
+      "id": "16",
+      "name": "Idaho",
+      "abbr": "ID",
+      "capital": "Boise",
+      "region": "West",
+      "nickname": "Gem State",
+      "year": 1890
+    },
+    {
+      "id": "17",
+      "name": "Illinois",
+      "abbr": "IL",
+      "capital": "Springfield",
+      "region": "Midwest",
+      "nickname": "Prairie State",
+      "year": 1818
+    },
+    {
+      "id": "18",
+      "name": "Indiana",
+      "abbr": "IN",
+      "capital": "Indianapolis",
+      "region": "Midwest",
+      "nickname": "Hoosier State",
+      "year": 1816
+    },
+    {
+      "id": "19",
+      "name": "Iowa",
+      "abbr": "IA",
+      "capital": "Des Moines",
+      "region": "Midwest",
+      "nickname": "Hawkeye State",
+      "year": 1846
+    },
+    {
+      "id": "20",
+      "name": "Kansas",
+      "abbr": "KS",
+      "capital": "Topeka",
+      "region": "Midwest",
+      "nickname": "Sunflower State",
+      "year": 1861
+    },
+    {
+      "id": "21",
+      "name": "Kentucky",
+      "abbr": "KY",
+      "capital": "Frankfort",
+      "region": "Southeast",
+      "nickname": "Bluegrass State",
+      "year": 1792
+    },
+    {
+      "id": "22",
+      "name": "Louisiana",
+      "abbr": "LA",
+      "capital": "Baton Rouge",
+      "region": "Southeast",
+      "nickname": "Pelican State",
+      "year": 1812
+    },
+    {
+      "id": "23",
+      "name": "Maine",
+      "abbr": "ME",
+      "capital": "Augusta",
+      "region": "Northeast",
+      "nickname": "Pine Tree State",
+      "year": 1820
+    },
+    {
+      "id": "24",
+      "name": "Maryland",
+      "abbr": "MD",
+      "capital": "Annapolis",
+      "region": "Northeast",
+      "nickname": "Old Line State",
+      "year": 1788
+    },
+    {
+      "id": "25",
+      "name": "Massachusetts",
+      "abbr": "MA",
+      "capital": "Boston",
+      "region": "Northeast",
+      "nickname": "Bay State",
+      "year": 1788
+    },
+    {
+      "id": "26",
+      "name": "Michigan",
+      "abbr": "MI",
+      "capital": "Lansing",
+      "region": "Midwest",
+      "nickname": "Great Lakes State",
+      "year": 1837
+    },
+    {
+      "id": "27",
+      "name": "Minnesota",
+      "abbr": "MN",
+      "capital": "Saint Paul",
+      "region": "Midwest",
+      "nickname": "North Star State",
+      "year": 1858
+    },
+    {
+      "id": "28",
+      "name": "Mississippi",
+      "abbr": "MS",
+      "capital": "Jackson",
+      "region": "Southeast",
+      "nickname": "Magnolia State",
+      "year": 1817
+    },
+    {
+      "id": "29",
+      "name": "Missouri",
+      "abbr": "MO",
+      "capital": "Jefferson City",
+      "region": "Midwest",
+      "nickname": "Show-Me State",
+      "year": 1821
+    },
+    {
+      "id": "30",
+      "name": "Montana",
+      "abbr": "MT",
+      "capital": "Helena",
+      "region": "West",
+      "nickname": "Treasure State",
+      "year": 1889
+    },
+    {
+      "id": "31",
+      "name": "Nebraska",
+      "abbr": "NE",
+      "capital": "Lincoln",
+      "region": "Midwest",
+      "nickname": "Cornhusker State",
+      "year": 1867
+    },
+    {
+      "id": "32",
+      "name": "Nevada",
+      "abbr": "NV",
+      "capital": "Carson City",
+      "region": "West",
+      "nickname": "Silver State",
+      "year": 1864
+    },
+    {
+      "id": "33",
+      "name": "New Hampshire",
+      "abbr": "NH",
+      "capital": "Concord",
+      "region": "Northeast",
+      "nickname": "Granite State",
+      "year": 1788
+    },
+    {
+      "id": "34",
+      "name": "New Jersey",
+      "abbr": "NJ",
+      "capital": "Trenton",
+      "region": "Northeast",
+      "nickname": "Garden State",
+      "year": 1787
+    },
+    {
+      "id": "35",
+      "name": "New Mexico",
+      "abbr": "NM",
+      "capital": "Santa Fe",
+      "region": "Southwest",
+      "nickname": "Land of Enchantment",
+      "year": 1912
+    },
+    {
+      "id": "36",
+      "name": "New York",
+      "abbr": "NY",
+      "capital": "Albany",
+      "region": "Northeast",
+      "nickname": "Empire State",
+      "year": 1788
+    },
+    {
+      "id": "37",
+      "name": "North Carolina",
+      "abbr": "NC",
+      "capital": "Raleigh",
+      "region": "Southeast",
+      "nickname": "Tar Heel State",
+      "year": 1789
+    },
+    {
+      "id": "38",
+      "name": "North Dakota",
+      "abbr": "ND",
+      "capital": "Bismarck",
+      "region": "Midwest",
+      "nickname": "Peace Garden State",
+      "year": 1889
+    },
+    {
+      "id": "39",
+      "name": "Ohio",
+      "abbr": "OH",
+      "capital": "Columbus",
+      "region": "Midwest",
+      "nickname": "Buckeye State",
+      "year": 1803
+    },
+    {
+      "id": "40",
+      "name": "Oklahoma",
+      "abbr": "OK",
+      "capital": "Oklahoma City",
+      "region": "Southwest",
+      "nickname": "Sooner State",
+      "year": 1907
+    },
+    {
+      "id": "41",
+      "name": "Oregon",
+      "abbr": "OR",
+      "capital": "Salem",
+      "region": "West",
+      "nickname": "Beaver State",
+      "year": 1859
+    },
+    {
+      "id": "42",
+      "name": "Pennsylvania",
+      "abbr": "PA",
+      "capital": "Harrisburg",
+      "region": "Northeast",
+      "nickname": "Keystone State",
+      "year": 1787
+    },
+    {
+      "id": "44",
+      "name": "Rhode Island",
+      "abbr": "RI",
+      "capital": "Providence",
+      "region": "Northeast",
+      "nickname": "Ocean State",
+      "year": 1790
+    },
+    {
+      "id": "45",
+      "name": "South Carolina",
+      "abbr": "SC",
+      "capital": "Columbia",
+      "region": "Southeast",
+      "nickname": "Palmetto State",
+      "year": 1788
+    },
+    {
+      "id": "46",
+      "name": "South Dakota",
+      "abbr": "SD",
+      "capital": "Pierre",
+      "region": "Midwest",
+      "nickname": "Mount Rushmore State",
+      "year": 1889
+    },
+    {
+      "id": "47",
+      "name": "Tennessee",
+      "abbr": "TN",
+      "capital": "Nashville",
+      "region": "Southeast",
+      "nickname": "Volunteer State",
+      "year": 1796
+    },
+    {
+      "id": "48",
+      "name": "Texas",
+      "abbr": "TX",
+      "capital": "Austin",
+      "region": "Southwest",
+      "nickname": "Lone Star State",
+      "year": 1845
+    },
+    {
+      "id": "49",
+      "name": "Utah",
+      "abbr": "UT",
+      "capital": "Salt Lake City",
+      "region": "West",
+      "nickname": "Beehive State",
+      "year": 1896
+    },
+    {
+      "id": "50",
+      "name": "Vermont",
+      "abbr": "VT",
+      "capital": "Montpelier",
+      "region": "Northeast",
+      "nickname": "Green Mountain State",
+      "year": 1791
+    },
+    {
+      "id": "51",
+      "name": "Virginia",
+      "abbr": "VA",
+      "capital": "Richmond",
+      "region": "Southeast",
+      "nickname": "Old Dominion",
+      "year": 1788
+    },
+    {
+      "id": "53",
+      "name": "Washington",
+      "abbr": "WA",
+      "capital": "Olympia",
+      "region": "West",
+      "nickname": "Evergreen State",
+      "year": 1889
+    },
+    {
+      "id": "54",
+      "name": "West Virginia",
+      "abbr": "WV",
+      "capital": "Charleston",
+      "region": "Southeast",
+      "nickname": "Mountain State",
+      "year": 1863
+    },
+    {
+      "id": "55",
+      "name": "Wisconsin",
+      "abbr": "WI",
+      "capital": "Madison",
+      "region": "Midwest",
+      "nickname": "Badger State",
+      "year": 1848
+    },
+    {
+      "id": "56",
+      "name": "Wyoming",
+      "abbr": "WY",
+      "capital": "Cheyenne",
+      "region": "West",
+      "nickname": "Equality State",
+      "year": 1890
+    }
+  ]
+}

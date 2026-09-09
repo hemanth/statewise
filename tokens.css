@@ -1,0 +1,13 @@
+:root {
+  --color-paper: #f7f8f4;
+  --color-white: #fff;
+  --color-ink: #263d33;
+  --color-muted: #7b827a;
+  --color-line: #e5e8df;
+  --color-accent: #335d45;
+  --color-soft: #edf1e6;
+  --font-body: "DM Sans", sans-serif;
+  --font-display: "DM Sans", sans-serif;
+  --radius-card: 16px;
+  --space-unit: 8px;
+}

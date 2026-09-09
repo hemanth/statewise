@@ -1,0 +1,22 @@
+{
+  "name": "Statewise",
+  "url": "https://h3manth.com/fun/statewise/",
+  "description": "Learn US state locations, capitals, abbreviations, nicknames, and statehood years through an interactive map and quizzes.",
+  "language": "en-US",
+  "source": "https://github.com/hemanth/statewise",
+  "documentation": "https://h3manth.com/fun/statewise/llms.txt",
+  "data": "https://h3manth.com/fun/statewise/states.json",
+  "features": [
+    "interactive US map",
+    "state search",
+    "region filters",
+    "fullscreen map",
+    "location quiz",
+    "capital quiz",
+    "nickname quiz",
+    "local learning progress"
+  ],
+  "accountRequired": false,
+  "storage": "Learning progress is saved in this browser's localStorage under statewise-progress. No server sync.",
+  "regionNote": "Five educational region groupings, not official Census regions."
+}

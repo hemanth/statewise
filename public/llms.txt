@@ -1,0 +1,23 @@
+# Statewise
+
+> A free, interactive field guide for learning the 50 United States, by Hemanth HM.
+
+Statewise helps learners explore state locations, capitals, postal abbreviations, nicknames, and admission years. It includes map-location, capital, and nickname quizzes with instant feedback. No account is required. Learned states and completed quiz results are stored only in the current browser's localStorage.
+
+## Links
+
+- [Web app](https://h3manth.com/fun/statewise/): Interactive map and quizzes.
+- [All 50 states (JSON)](https://h3manth.com/fun/statewise/states.json): Bundled state facts, suitable for direct machine reading.
+- [Application metadata](https://h3manth.com/fun/statewise/app.json): Features, data URLs, storage behavior, and interaction guidance.
+- [Source code](https://github.com/hemanth/statewise): React and Vite source, setup instructions, and browser smoke tests.
+- [Sitemap](https://h3manth.com/fun/statewise/sitemap.xml): Canonical app URL.
+
+## Interaction guide
+
+Explore: select a state on the SVG map, use Find a state to search by name, abbreviation, or capital, or filter by region. Small-state buttons provide easier targets. Mark as learned toggles a local bookmark. The expand icon enters fullscreen; Escape exits.
+
+Practice: choose Find the state, Capital connections, or What's in a nickname. Answer each question, read immediate feedback, and select Next question. The map quiz marks the correct outline with a check and a wrong choice with a cross. My progress shows learned states, aggregate quiz accuracy, and completed quizzes.
+
+## Data notes
+
+The five learning regions are West, Southwest, Midwest, Southeast, and Northeast. These are educational groupings, not the four official Census regions. Admission years are statehood years; no current population estimates are provided. Geographic shapes come from us-atlas. The app is not a live-data or government service. There is no backend API, authentication service, or MCP endpoint.
