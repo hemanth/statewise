@@ -52,3 +52,18 @@ Vite builds for `/fun/statewise/`. Run `npm run build`, then copy the contents o
 ## Geographic data attribution
 
 Map geometry is distributed with us-atlas, copyright 2013–2019 Michael Bostock. Its permission notice is included in `public/US-ATLAS-LICENSE.txt` and the deployed files.
+
+## Narrated demo
+
+[Watch the 41-second Statewise demo](https://h3manth.com/fun/statewise/statewise-narrated.mp4).
+
+The HyperFrames source is in `videos/statewise/`, with captured app screens, captions, and Hemanth narration generated locally using Pocket TTS. Personal voice-conditioning files are not included.
+
+To render the checked-in composition:
+
+```sh
+cd videos/statewise
+npm run render -- --quality high --fps 30 --workers 2 --output renders/statewise-narrated.mp4
+```
+
+The published copy is `public/statewise-narrated.mp4`.

@@ -1,0 +1,34 @@
+{
+  "voices": [
+    {
+      "frame": 1,
+      "path": "audio/01-discover.wav",
+      "duration_s": 10.2,
+      "text": "Fifty states. Where do you start? Pick one. Statewise turns a map of the United States into a little discovery, every time you explore.",
+      "words": []
+    },
+    {
+      "frame": 2,
+      "path": "audio/02-learn.wav",
+      "duration_s": 9.8,
+      "text": "Tap California. There is the capital, the year it became a state, and a fact worth remembering. Mark it as learned, and keep exploring.",
+      "words": []
+    },
+    {
+      "frame": 3,
+      "path": "audio/03-practice.wav",
+      "duration_s": 10.92,
+      "text": "Now try the map challenge. Pick the wrong state, and you see exactly where you went wrong. The correct outline lights up. Try again, and make it stick.",
+      "words": []
+    },
+    {
+      "frame": 4,
+      "path": "audio/04-remember.wav",
+      "duration_s": 10.2,
+      "text": "Practice capitals and nicknames too. Your progress stays on your device, and the map works on your phone. Open Statewise. Learn one state today.",
+      "words": []
+    }
+  ],
+  "bgm": null,
+  "sfx": []
+}

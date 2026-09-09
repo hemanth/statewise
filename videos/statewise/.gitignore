@@ -1,0 +1,6 @@
+capture/
+renders/
+snapshots/
+.hyperframes/
+.media/
+*-report.json

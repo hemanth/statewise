@@ -1,0 +1,36 @@
+import {chromium} from '@playwright/test';
+import {writeFileSync,appendFileSync} from 'node:fs';
+const browser=await chromium.launch({executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless:true});
+const context=await browser.newContext({viewport:{width:1440,height:1100},deviceScaleFactor:2});
+const page=await context.newPage();
+const output='videos/statewise/assets/';
+try{
+ await page.goto('https://h3manth.com/fun/statewise/');
+ await page.locator('.state-card').waitFor();await page.evaluate(()=>document.fonts.ready);
+ await page.locator('.map-panel').screenshot({path:output+'map-panel.png'});
+ await page.locator('.state-card').screenshot({path:output+'california.png'});
+ await page.locator('.learn-button').click();
+ await page.locator('.state-card').screenshot({path:output+'california-learned.png'});
+ await page.locator('.practice-card.green').click();
+ await page.locator('.quiz-dialog').screenshot({path:output+'quiz-question.png'});
+ const target=await page.locator('#quiz-title').textContent();
+ const wrong=target==='Where is Texas?'?'06':'48';
+ await page.getByLabel('Choose state answer').selectOption(wrong);
+ await page.locator('.quiz-dialog').screenshot({path:output+'quiz-wrong.png'});
+ await page.locator('.answer-feedback .primary').click();
+ const next=await page.locator('#quiz-title').textContent();
+ const option=await page.getByLabel('Choose state answer').locator('option').evaluateAll((els,q)=>els.find(el=>q===`Where is ${el.textContent}?`).value,next);
+ await page.getByLabel('Choose state answer').selectOption(option);
+ await page.locator('.quiz-dialog').screenshot({path:output+'quiz-correct.png'});
+ await page.getByLabel('Close quiz').click();
+ await page.getByRole('button',{name:'Practice',exact:true}).click();
+ await page.locator('.practice-grid').screenshot({path:output+'practice-options.png'});
+ await page.getByRole('button',{name:'My progress',exact:true}).click();
+ await page.locator('.stats').screenshot({path:output+'progress.png'});
+ const mobile=await context.newPage();await mobile.setViewportSize({width:390,height:844});
+ await mobile.goto('https://h3manth.com/fun/statewise/');await mobile.locator('.us-map').first().waitFor();
+ await mobile.screenshot({path:output+'mobile.png'});
+ writeFileSync('videos/statewise/assets/proof.json',JSON.stringify({source:'https://h3manth.com/fun/statewise/',wrongQuestion:target,correctQuestion:next,scale:2},null,2));
+ appendFileSync('videos/statewise/capture/extracted/asset-descriptions.md','\n## Additional real app captures\n'+['map-panel.png — Actual 50-state interactive map panel, 2x capture','california.png — Actual California detail card','california-learned.png — Actual marked-as-learned detail card','quiz-question.png — Actual unanswered map quiz','quiz-wrong.png — Actual incorrect response and correct outline','quiz-correct.png — Actual correct response','practice-options.png — Actual three practice modes','progress.png — Actual saved progress with one learned state','mobile.png — Actual 390px mobile homepage'].map(x=>'- assets/'+x).join('\n'));
+ console.log('Captured nine real product states at 2x resolution.');
+}finally{await browser.close();}
