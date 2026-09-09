@@ -47,7 +47,7 @@ These make the app easier to discover and read; they do not guarantee search ind
 
 ## Deployment
 
-Vite builds for `/fun/statewise/`. Run `npm run build`, then copy the contents of `dist/` to the server's `fun/statewise/` directory. Preview with `npm run preview` and open `/fun/statewise/` under the preview URL. The app does not require a Node server in production.
+Vite builds for `/fun/statewise/`. Run `npm run build`, then copy the contents of `dist/` (including `.htaccess`) to `~/public_html/fun/statewise/` on the hosting server. Statewise is served directly by Apache; it needs no PM2 process or proxy configuration. Preview with `npm run preview` and open `/fun/statewise/` under the preview URL. The app does not require a Node server in production.
 
 ## Geographic data attribution
 

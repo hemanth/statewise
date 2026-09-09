@@ -1,0 +1,13 @@
+# Statewise is a static app; all navigation happens within index.html.
+DirectoryIndex index.html
+Options -Indexes
+AddType application/manifest+json .webmanifest
+AddType image/svg+xml .svg
+AddType video/mp4 .mp4
+
+<IfModule mod_expires.c>
+  ExpiresActive Off
+</IfModule>
+<IfModule mod_headers.c>
+  Header set Cache-Control "no-cache"
+</IfModule>
